@@ -1,7 +1,9 @@
+require("dotenv").config();
+
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
-    title: "bookmark-app-jamstack",
+    title: "jamstack-bookmark-app",
   },
-  plugins: [],
+  plugins: ["gatsby-plugin-postcss"],
 };
