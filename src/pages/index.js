@@ -80,13 +80,13 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex justify-between  mx-auto h-screen w-screen mt-10 md:mt-0 flex-wrap">
-        <div className="shadow-lg p-10 bg-white h-110 mt-24 mx-auto">
+      <div className="flex justify-between mx-auto h-screen w-screen mt-10 md:mt-0 flex-wrap">
+        <div className="w-72 shadow-lg  p-8 md:p-10 bg-white h-110 mt-24 mx-auto md:w-90">
           <h1 className="text-center text-4xl font-pacifico m-3">
             Bookmark App
           </h1>
           <div className="mt-10 mx-auto text-center">
-            <form onSubmit={addBookmark}>
+            <form onSubmit={addBookmark} className="mx-auto">
               <input
                 type="text"
                 className="border block w-56 md:w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
