@@ -6,3 +6,10 @@ body {
   background-color: rgb(255, 241, 243);
   overflow-x: hidden;
 }
+button:disabled {
+  opacity: 0.6;
+}
+
+button:disabled:hover {
+  cursor: not-allowed;
+}

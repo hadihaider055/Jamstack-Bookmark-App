@@ -1,33 +1,58 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import gql from "graphql-tag";
 import DataComponent from "../components/data";
 import ErrorComponent from "../components/error";
 import LoadingComponent from "../components/loading";
-import EditAlert from "../components/editAlert";
+import LoaderSvg from "../components/loaderSvg";
 
 const Home = () => {
-  let inputText;
-  let inputUrl;
-  let inputTextarea;
+  const [bookmarkData, setBookmarkData] = useState({
+    id: "",
+    title: "",
+    url: "",
+    description: "",
+  });
+  const [toggleBtn, setToggleBtn] = useState(false);
+  const [btnDisable, setBtnDisable] = useState(false);
 
   const [createBookmark] = useMutation(ADD_BOOKMARK);
   const [deleteBookmark] = useMutation(DELETE_BOOKMARK);
   const [editBookmark] = useMutation(EDIT_BOOKMARK);
 
-  const addBookmark = (e) => {
+  const addBookmark = async (e) => {
     e.preventDefault();
-    createBookmark({
-      variables: {
-        title: inputText.value,
-        url: inputUrl.value,
-        description: inputTextarea.value,
-      },
-      refetchQueries: [{ query: GET_BOOKMARKS }],
+
+    if (toggleBtn === false) {
+      setBtnDisable(true);
+      const data = await createBookmark({
+        variables: {
+          title: bookmarkData.title,
+          url: bookmarkData.url,
+          description: bookmarkData.description,
+        },
+        refetchQueries: [{ query: GET_BOOKMARKS }],
+      });
+      if (data) setBtnDisable(false);
+    } else {
+      setBtnDisable(true);
+      const data = await editBookmark({
+        variables: {
+          id: bookmarkData.id,
+          title: bookmarkData.title,
+          url: bookmarkData.url,
+          description: bookmarkData.description,
+        },
+        refetchQueries: [{ query: GET_BOOKMARKS }],
+      });
+      if (data) setBtnDisable(false);
+    }
+    setBookmarkData({
+      title: "",
+      url: "",
+      description: "",
     });
-    inputText.value = "";
-    inputUrl.value = "";
-    inputTextarea.value = "";
+    setToggleBtn(false);
   };
 
   const handleDelete = (id) => {
@@ -37,16 +62,14 @@ const Home = () => {
     });
   };
 
-  const handleEdit = (id) => {
-    editBookmark({
-      variables: {
-        id,
-        title: inputText.value,
-        url: inputUrl.value,
-        description: inputTextarea.value,
-      },
-      refetchQueries: [{ query: GET_BOOKMARKS }],
+  const handleEdit = (bookmark) => {
+    setBookmarkData({
+      id: bookmark.id,
+      title: bookmark.title,
+      url: bookmark.url,
+      description: bookmark.description,
     });
+    setToggleBtn(true);
   };
 
   const { loading, error, data } = useQuery(GET_BOOKMARKS);
@@ -68,24 +91,38 @@ const Home = () => {
                 type="text"
                 className="border block w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
                 placeholder="Title"
-                ref={(input) => (inputText = input)}
+                onChange={(e) =>
+                  setBookmarkData({ ...bookmarkData, title: e.target.value })
+                }
+                value={bookmarkData.title}
               />
               <input
                 type="url"
                 className="border block w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
                 placeholder="Url"
-                ref={(input) => (inputUrl = input)}
+                onChange={(e) =>
+                  setBookmarkData({ ...bookmarkData, url: e.target.value })
+                }
+                value={bookmarkData.url}
               />
               <textarea
                 className="border block w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 h-24 resize-none focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
                 placeholder="Description"
-                ref={(input) => (inputTextarea = input)}
+                onChange={(e) =>
+                  setBookmarkData({
+                    ...bookmarkData,
+                    description: e.target.value,
+                  })
+                }
+                value={bookmarkData.description}
               />
               <button
                 type="submit"
                 className=" block w-72 p-2 rounded-sm bg-purple-700 text-white hover:bg-purple-800 hover:shadow-lg transition-all duration-500 ease-in-out  focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
+                disabled={btnDisable}
               >
-                Submit
+                {toggleBtn ? "Edit" : "Create"}
+                {btnDisable ? <LoaderSvg /> : ""}
               </button>
             </form>
           </div>

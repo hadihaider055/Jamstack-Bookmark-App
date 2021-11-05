@@ -1,12 +1,9 @@
 import React from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
-import EditAlert from "./editAlert";
+import Swal from "sweetalert2";
 
-const DataComponent = ({ data, handleDelete }) => {
-  const handleEdit = () => {
-    return <EditAlert />;
-  };
+const DataComponent = ({ data, handleDelete, handleEdit }) => {
   return (
     <>
       <div className="p-10 mx-auto h-110 mt-12 ">
@@ -45,7 +42,7 @@ const DataComponent = ({ data, handleDelete }) => {
                   <FiEdit
                     className="text-xl text-green-600 mx-1"
                     title="Edit Bookmark"
-                    onClick={handleEdit}
+                    onClick={() => handleEdit(bookmark)}
                   />
                 </div>
               </li>
