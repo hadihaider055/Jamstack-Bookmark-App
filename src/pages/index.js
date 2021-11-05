@@ -89,7 +89,7 @@ const Home = () => {
             <form onSubmit={addBookmark}>
               <input
                 type="text"
-                className="border block w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
+                className="border block w-56 md:w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
                 placeholder="Title"
                 onChange={(e) =>
                   setBookmarkData({ ...bookmarkData, title: e.target.value })
@@ -98,7 +98,7 @@ const Home = () => {
               />
               <input
                 type="url"
-                className="border block w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
+                className="border block w-56 md:w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
                 placeholder="Url"
                 onChange={(e) =>
                   setBookmarkData({ ...bookmarkData, url: e.target.value })
@@ -106,7 +106,7 @@ const Home = () => {
                 value={bookmarkData.url}
               />
               <textarea
-                className="border block w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 h-24 resize-none focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
+                className="border block w-56 md:w-72 p-2 rounded-sm border-purple-700 focus:outline-none focus:ring-1 h-24 resize-none focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
                 placeholder="Description"
                 onChange={(e) =>
                   setBookmarkData({
@@ -118,7 +118,7 @@ const Home = () => {
               />
               <button
                 type="submit"
-                className=" block w-72 p-2 rounded-sm bg-purple-700 text-white hover:bg-purple-800 hover:shadow-lg transition-all duration-500 ease-in-out  focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
+                className=" block w-56 md:w-72 p-2 rounded-sm bg-purple-700 text-white hover:bg-purple-800 hover:shadow-lg transition-all duration-500 ease-in-out  focus:outline-none focus:ring-1 focus:ring-purple-700 shadow-sm my-2 bg-transparent font-montserrat tracking-wider"
                 disabled={btnDisable}
               >
                 {toggleBtn ? "Edit" : "Create"}

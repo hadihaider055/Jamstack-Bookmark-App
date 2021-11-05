@@ -1,11 +1,22 @@
 import React from "react";
+import "../styles/loader.css";
 
 const LoadingComponent = () => {
   return (
     <>
-      <div className="absolute top-2/4 left-2/4 -mt-10 -ml-10">
-        <h2 className="text-2xl text-center font-semibold">Loading..</h2>
-      </div>
+      <svg class="loader" viewBox="0 0 50 50">
+        <circle
+          class="loader__path"
+          cx="25"
+          cy="25"
+          r="20"
+          fill="none"
+          stroke-width="5"
+        ></circle>
+      </svg>
+      <h1 className="font-nunito absolute top-2/4 left-2/4 mt-16 -ml-10 text-2xl">
+        Loading...
+      </h1>
     </>
   );
 };

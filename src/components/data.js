@@ -14,10 +14,10 @@ const DataComponent = ({ data, handleDelete, handleEdit }) => {
           <ul>
             {data.bookmarks.map((bookmark) => (
               <li
-                className="leading-10 mt-4 bg-white cursor-pointer hover:shadow-md shadow-sm transition-all duration-500 ease-in-out p-4 rounded-md w-96 flex items-center justify-between"
+                className="w-64 h-full leading-10 mt-4 bg-white cursor-pointer hover:shadow-md shadow-sm transition-all duration-500 ease-in-out p-4 rounded-md md:w-96 block md:flex items-center justify-between"
                 key={bookmark.id}
               >
-                <div className="w-64 ">
+                <div className="md:w-60">
                   <p className="font-nunito font-semibold tracking-wider text-xl">
                     {bookmark.title}
                   </p>
@@ -29,11 +29,11 @@ const DataComponent = ({ data, handleDelete, handleEdit }) => {
                   >
                     {bookmark.url}
                   </a>
-                  <p className="font-opensans text-black text-sm tracking-wider">
+                  <p className="font-opensans text-black text-sm tracking-wider break-all">
                     {bookmark.description}
                   </p>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mt-6 md:mt-0">
                   <AiOutlineDelete
                     className="text-2xl text-red-500 mx-1"
                     title="Delete Bookmark"
