@@ -8,7 +8,7 @@ const adminClient = new faunadb.Client({
 
 const typeDefs = gql`
   type Query {
-    bookmarks: [Bookmark!]
+    bookmarks: [Bookmark]
   }
 
   type Mutation {
@@ -17,7 +17,7 @@ const typeDefs = gql`
     editBookmark(
       id: ID!
       title: String
-      url: String
+      url: String!
       description: String
     ): Bookmark
   }

@@ -14,7 +14,7 @@ const DataComponent = ({ data, handleDelete, handleEdit }) => {
           <ul>
             {data.bookmarks.map((bookmark) => (
               <li
-                className="w-72 h-full leading-10 mt-4 bg-white cursor-pointer hover:shadow-md shadow-sm transition-all duration-500 ease-in-out p-4 rounded-md md:w-96 block md:flex items-center justify-between"
+                className="w-72 h-full md:mr-3 leading-10 mb-4 bg-white cursor-pointer hover:shadow-md shadow-sm transition-all duration-500 ease-in-out p-4 rounded-md md:w-96 block md:flex items-center justify-between"
                 key={bookmark.id}
               >
                 <div className="md:w-60">

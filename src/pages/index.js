@@ -103,6 +103,7 @@ const Home = () => {
                 onChange={(e) =>
                   setBookmarkData({ ...bookmarkData, url: e.target.value })
                 }
+                required
                 value={bookmarkData.url}
               />
               <textarea
